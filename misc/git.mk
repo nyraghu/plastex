@@ -6,7 +6,7 @@
 
 PROJECT = plastex
 GIT_REMOTES = origin upstream
-GIT_REMOTE_ORIGIN_URL = git@github.com:nyraghu/plastex.git
+GIT_REMOTE_ORIGIN_URL = git@github.com:nyraghu/${PROJECT}.git
 GIT_REMOTE_UPSTREAM_URL = https://github.com/plastex/plastex.git
 GIT_BRANCHES = master
 GIT_BRANCHES += git-pull-command
@@ -104,7 +104,7 @@ define GIT_PULL_template =
 
 git-pull-$1: git-checkout-$1
 	git branch --set-upstream-to=origin/$1
-	git pull
+	git pull --no-rebase
 	git checkout ${GIT_CURRENT_BRANCH}
 endef
 
@@ -115,7 +115,7 @@ $(foreach branch,${GIT_BRANCHES},$(eval $(call \
 
 git-pull-current-branch:
 	git branch --set-upstream-to=origin/${GIT_CURRENT_BRANCH}
-	git pull
+	git pull --no-rebase
 
 ### ==================================================================
 ### Targets for git merge
