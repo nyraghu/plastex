@@ -247,6 +247,42 @@ div.content {
   padding: 1rem 1rem 2.5rem 1rem;
 }
 
+div.theorem-style-theorem {
+  font-style: italic;
+}
+
+div.definition-style-theorem {
+  font-style: normal;
+}
+
+span.theorem-heading {
+  margin-right: 0.5rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+span.theorem-number {
+  margin-right: 0.25rem;
+}
+
+span.theorem-note {
+  margin-left: 0.25rem;
+}
+
+div.proof {
+  font-style: normal;
+}
+
+span.proof-heading {
+  margin-right: 0.5rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+span.qed {
+  float: right;
+}
+
 div.content {
   line-height: 1.4rem;
 }
