@@ -30,7 +30,7 @@ theorem_to_style = {
     for theorem in theorems
 }
 
-exports_to_be_prefixed = theorems + [ 'proof' ]
+exports_to_be_prefixed = theorems + ['proof']
 
 
 def ProcessOptions(options, document):
