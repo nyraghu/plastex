@@ -1,0 +1,49 @@
+name: theoremsetc_corollary theoremsetc_lemma \
+      theoremsetc_proposition theoremsetc_theorem \
+      theoremsetc_axiom theoremsetc_axioms \
+      theoremsetc_definition theoremsetc_definitions \
+      theoremsetc_example theoremsetc_examples \
+      theoremsetc_exercise theoremsetc_exercises \
+      theoremsetc_notation \
+      theoremsetc_postulate theoremsetc_postulates \
+      theoremsetc_primitiveNotion theoremsetc_primitiveNotions \
+      theoremsetc_remark theoremsetc_remarks
+{% set class = '%s-style-theorem %s'
+               % (obj.theorem_style, obj.theorem_raw_name) %}
+{% set number = '<span class="theorem-number">%s</span>' % obj.ref %}
+{% set name = ' <span class="theorem-name">%s</span>'
+              % obj.theorem_name %}
+{% set note_value = obj.attributes['note'] %}
+{% set note = ' <span class="theorem-note">(%s)</span>' % note_value
+              if note_value else '' %}
+{% set punctuation = '<span class="theorem-punctuation">.</span>' %}
+{% set heading = '<span class="theorem-heading">%s%s%s%s</span>'
+                 % (number, name, note, punctuation) %}
+<div class="{{ class }}" id="{{ obj.id }}">
+{% for child in obj %}
+{% if not child.blockType %}<p>{% endif %}
+{% if loop.first %}{{ heading }}{% endif %}
+{{ child }}
+{% if not child.blockType %}</p>{% endif %}
+{% endfor %}
+</div>
+
+name: theoremsetc_proof
+{% set class = 'proof' %}
+{% set default_name = 'Proof' %}
+{% set name_value = obj.attributes['name'] %}
+{% set proof_name = name_value if name_value else default_name %}
+{% set name = '<span class="proof-name">%s</span>' % proof_name %}
+{% set punctuation = '<span class="proof-punctuation">.</span>' %}
+{% set heading = '<span class="proof-heading">%s%s</span>'
+                 % (name, punctuation) %}
+{% set qed = '<span class="qed">□</span>' %}
+<div class="{{ class }}" id="{{ obj.id }}">
+{% for child in obj %}
+{% if not child.blockType %}<p>{% endif %}
+{% if loop.first %}{{ heading }}{% endif %}
+{{ child }}
+{% if loop.last %}{{ qed }}{% endif %}
+{% if not child.blockType %}</p>{% endif %}
+{% endfor %}
+</div>
