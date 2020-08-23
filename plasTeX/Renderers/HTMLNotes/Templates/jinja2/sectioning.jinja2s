@@ -1,4 +1,6 @@
 name: section
-{% set separator = '&nbsp;&nbsp;&nbsp;' %}
-<h1 id="{{ obj.id }}"><span class="section-number">{{ obj.ref }}</span>{{ separator }}{{ obj.title }}</h1>
+{% set number = '<span class="section-number">%s</span>' % obj.ref %}
+{% set title = '<span class="section-title">%s</span>' % obj.title %}
+{% set heading = '<h1 id="%s">%s %s</h1>' % (obj.id, number, title) %}
+{{ heading }}
 {{ obj }}
