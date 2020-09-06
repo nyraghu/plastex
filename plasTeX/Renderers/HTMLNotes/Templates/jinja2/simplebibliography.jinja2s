@@ -1,0 +1,13 @@
+name: simplebibliography_cite
+{% set attributes = obj.attributes %}
+{% set note = attributes['note'] %}
+{% set creator = obj.creator %}
+{% set number = obj.bibliography_entry_number %}
+{% set target = obj.bibliography_link_target %}
+{% set id = obj.id %}
+{% set name = '<a id="%s">%s</a>' % (id, creator) %}
+{% set link = '<a href="%s">%s</a>' % (target, number) %}
+{% set note_text = ', %s' % note if note else '' %}
+{% set reference = '[%s%s]' % (link, note_text) %}
+{% set class = 'bibliographic-citation' %}
+<span class="{{ class }}">{{ name }} {{ reference }}</span>

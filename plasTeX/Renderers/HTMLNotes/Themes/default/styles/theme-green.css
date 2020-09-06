@@ -1,3 +1,4 @@
+@charset "UTF-8";
 ul.breadcrumbs {
   margin: 1rem 0 0 0;
   padding: 0 0 0 0.5rem;
@@ -15,6 +16,137 @@ ul.breadcrumbs a {
 
 li.crumb::after {
   content: " / ";
+}
+
+ol.bibliography_list {
+  margin: 2.1rem 0;
+}
+
+li.bibliography_entry::marker {
+  font-weight: bold;
+}
+
+li.bibliography_entry {
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+span.bibliography_entry_title_block {
+  font-weight: bold;
+  /* https://css-tricks.com/injecting-line-break/
+     #exploiting-table-layout */
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_subtitle_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_xref_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_xref_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_article_pages {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_article_journal_volume_year_pages_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_journal_name {
+  font-style: italic;
+}
+
+span.bibliography_entry_article_journal_volume {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+span.bibliography_entry_article_journal_year {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_arxiv_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_arxiv_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_arxiv_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_doi_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_doi_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_doi_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_url_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_url_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_url_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_book_edition_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_series_volume_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_volume {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_book_publisher_year_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_year {
+  margin-left: 0.5rem;
+}
+
+ul.bibliography_entry_citations {
+  list-style-type: "⁃ ";
+}
+
+li.bibliography_entry_citation {
+  font-size: 0.9rem;
+}
+
+span.bibliography_entry_citation_prefix {
+  margin-right: 0.25rem;
 }
 
 code {

@@ -1,0 +1,215 @@
+{# ================================================================ #}
+{# Macros for the blocks common to both article and book entries    #}
+{# ================================================================ #}
+
+
+{% macro arxiv_block(entry) %}
+{% set arxiv = entry.arxiv %}
+{% if arxiv %}
+<span class="bibliography_entry_arxiv_block"><span class="bibliography_entry_arxiv_name">arXiv</span> <span class="bibliography_entry_arxiv_link"><a href="http://www.arXiv.org/abs/{{ arxiv }}">{{ arxiv }}</a></span></span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro authors_block(entry) %}
+{% set authors = entry.authors %}
+{% if authors %}
+<span class="bibliography_entry_authors_block">{{ authors }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro citations_block(entry) %}
+{% set citations = entry.citations %}
+{% if citations %}
+<div class="bibliography_entry_citations_block">
+<span class="bibliography_entry_citations_opening">Cited in:</span>
+<ul class="bibliography_entry_citations">
+{% for citation in citations %}
+{% set url = citation.url %}
+{% set section = citation.currentSection %}
+{% set section_number = section.ref %}
+{% set section_title = section.title %}
+{% set prefix = '<span class="bibliography_entry_citation_prefix">Section %s.</span>' % section_number if section_number and section_title else None %}
+{% set text = section_title if section_title else 'Section %s' % section_number %}
+{% set link = '<span class="bibliography_entry_citation_link"><a href="%s">%s</a></span>' % (url, text) %}
+<li class="bibliography_entry_citation">{{ [prefix, link] | select | join(' ') }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endmacro %}
+
+
+{% macro doi_block(entry) %}
+{% set doi = entry.doi %}
+{% if doi %}
+<span class="bibliography_entry_doi_block"><span class="bibliography_entry_doi_name">doi</span> <span class="bibliography_entry_doi_link"><a href="http://dx.doi.org/{{ doi }}">{{ doi }}</a></span></span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro subtitle_block(entry) %}
+{% set subtitle = entry.subtitle %}
+{% if subtitle %}
+<span class="bibliography_entry_subtitle_block">{{ subtitle }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro title_block(entry) %}
+<span class="bibliography_entry_title_block">{{ entry.title }}</span>
+{% endmacro %}
+
+
+{% macro url_block(entry) %}
+{% set url = entry.url %}
+{% if url %}
+<span class="bibliography_entry_url_block"><span class="bibliography_entry_url_name">url</span> <span class="bibliography_entry_url_link"><a href="{{ url }}">{{ url }}</a></span></span>
+{% endif %}
+{% endmacro %}
+
+
+{# ================================================================ #}
+{# Macros for the blocks of an article entry                        #}
+{# ================================================================ #}
+
+
+{% macro pages(article, use_prefix) %}
+{% set start = article.start_page %}
+{% set end = article.end_page %}
+{% set _prefix = '%s.&nbsp;' % 'pp' if end else 'p' %}
+{% set prefix = _prefix if use_prefix else '' %}
+{% set pages = [start, end] | select | join('-') %}
+{{ ', <span class="bibliography_entry_article_pages">%s%s</span>' % (prefix, pages) if pages else '' }}
+{% endmacro %}
+
+
+{% macro journal_volume_year_pages_block(article) %}
+{% set _journal = article.journal %}
+{% set journal = '<span class="bibliography_entry_article_journal_name">%s</span>' % _journal if _journal else '' %}
+{% set _volume = article.volume %}
+{% set volume = ' <span class="bibliography_entry_article_journal_volume">%s</span>' % _volume if _journal and _volume else '' %}
+{% set _year = article.year %}
+{% if _journal and _year %}
+{% set year = ' <span class="bibliography_entry_article_journal_year">(%s)</span>' % _year %}
+{% elif _year %}
+{% set year = ' <span class="bibliography_entry_article_non_journal_year">%s</span>' % _year %}
+{% else %}
+{% set year = '' %}
+{% endif %}
+{% set pages = pages(article, use_prefix=False) %}
+<span class="bibliography_entry_article_journal_volume_year_pages_block">{{ journal }}{{ volume }}{{ year }}{{ pages }}</span>
+{% endmacro %}
+
+
+{% macro xref_block(article) %}
+{% set key = article.xref_key %}
+{% set number = article.xref_entry_number %}
+{% set link = '<span class="bibliography_entry_xref_link">[<a href="#%s">%s</a>]</span>' % (key, number) %}
+{% set pages = pages(article, use_prefix=True) %}
+{% if key %}
+<span class="bibliography_entry_article_xref_block">In: {{ link }}{{ pages }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{# ================================================================ #}
+{# Macros for the blocks of a book entry                            #}
+{# ================================================================ #}
+
+
+{% macro edition_block(book) %}
+{% set edition = book.edition %}
+{% if edition %}
+<span class="bibliography_entry_book_edition_block">{{ edition }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro editors_block(book) %}
+{% set editors = book.editors %}
+{% if editors %}
+<span class="bibliography_entry_book_editors_block">{{ editors }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro publisher_year_block(book) %}
+{% set _publisher = book.publisher %}
+{% set publisher = '<span class="bibliography_entry_book_publisher">%s</span>' % _publisher if _publisher else None %}
+{% set _year = book.year %}
+{% set year = '<span class="bibliography_entry_book_year">%s</span>' % _year if _year else None %}
+{% if publisher or year %}
+<span class="bibliography_entry_book_publisher_year_block">{{ [publisher, year] | select | join(', ') }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{% macro series_volume_block(book) %}
+{% set _series = book.series %}
+{% set series = '<span class="bibliography_entry_book_series">%s</span>' % _series if _series else None %}
+{% set _volume = book.volume %}
+{% set volume = '<span class="bibliography_entry_book_volume">vol.&nbsp;<span class="bibliography_entry_book_volume_number">%s</span></span>' % _volume if _volume else None %}
+{% if series or volume %}
+<span class="bibliography_entry_book_series_volume_block">{{ [series, volume] | select | join(', ') }}</span>
+{% endif %}
+{% endmacro %}
+
+
+{# ================================================================ #}
+{# Macros for gathering the blocks of the article and book entries  #}
+{# ================================================================ #}
+
+
+{% macro format_article(article) %}
+{{ authors_block(article) }}
+{{ title_block(article) }}
+{{ subtitle_block(article) }}
+{% if article.xref_key %}
+{{ xref_block(article) }}
+{% else %}
+{{ journal_volume_year_pages_block(article) }}
+{% endif %}
+{{ arxiv_block(article) }}
+{{ doi_block(article) }}
+{{ url_block(article) }}
+{{ citations_block(article) }}
+{% endmacro %}
+
+
+{% macro format_book(book) %}
+{{ authors_block(book) }}
+{{ editors_block(book) }}
+{{ title_block(book) }}
+{{ subtitle_block(book) }}
+{{ edition_block(book) }}
+{{ series_volume_block(book) }}
+{{ publisher_year_block(book) }}
+{{ arxiv_block(book) }}
+{{ doi_block(book) }}
+{{ url_block(book) }}
+{{ citations_block(book) }}
+{% endmacro %}
+
+
+{# ================================================================ #}
+{# The template for the printbibliography element                   #}
+{# ================================================================ #}
+
+
+<div class="bibliography">
+<h1 id="{{ obj.id }}">{{ obj.title }}</h1>
+<ol class="bibliography_list">
+{% for id, entry in obj.entries.items() %}
+{% set entrytype = entry.entrytype %}
+<li class="bibliography_entry {{ entrytype }}" id="{{ id }}">
+{% if entrytype == 'article' %}
+{{ format_article(entry) }}
+{% else %}
+{{ format_book(entry) }}
+{% endif %}
+</li>
+{% endfor %}
+</ol>
+</div>
