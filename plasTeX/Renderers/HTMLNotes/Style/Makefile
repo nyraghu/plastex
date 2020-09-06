@@ -1,5 +1,5 @@
-THEMES = green
-DEFAULT_THEME = green
+THEMES = blue green
+DEFAULT_THEME = blue
 SOURCE_DIRECTORY = sass
 BUILD_DIRECTORY = build
 INSTALLATION_DIRECTORY = ../Themes/default/styles
