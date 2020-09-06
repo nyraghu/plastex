@@ -9,7 +9,6 @@ GIT_REMOTES = origin upstream
 GIT_REMOTE_ORIGIN_URL = git@github.com:nyraghu/${PROJECT}.git
 GIT_REMOTE_UPSTREAM_URL = https://github.com/plastex/plastex.git
 GIT_BRANCHES = master
-GIT_BRANCHES += colour-modifications
 GIT_CURRENT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 ### ==================================================================
