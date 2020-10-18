@@ -2,7 +2,7 @@ name: typetheory_element
 \mathrel{:}
 
 name: typetheory_same
-\equiv{}
+\equiv
 
 name: typetheory_universe
 {% set grade = obj.attributes['grade'] %}
@@ -56,7 +56,7 @@ name: typetheory_unitType
 \mathbf{1}
 
 name: typetheory_unitTypeElement
-\star{}
+\star
 
 name: typetheory_booleanType
 \mathbf{B}

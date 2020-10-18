@@ -20,6 +20,9 @@ def set_up_css_js(document):
         'plastex.js',
         'svgxuse.js',
     ]
+    renderer_data['mathjax_configuration'] = [
+        'mathjax-configuration.js'
+    ]
 
 
 class HTMLNotes(PageTemplate.Renderer):
