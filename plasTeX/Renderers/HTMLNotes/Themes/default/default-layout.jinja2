@@ -58,8 +58,8 @@ MathJax = {
 {% if links.up.url %}<link rel="parent" href="{{ links.up.url }}" title="{{ links.up.title.textContent }}">{% endif %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&amp;family=Roboto+Mono&amp;display=swap">
 {% for css in rendererdata.get('css', []) %}<link rel="stylesheet" href="styles/{{ css }}">{% endfor %}
-<script>{{ mathjax_configuration }}</script>
-<script src="{{ mathjax_url }}" async></script>
+{% for js in rendererdata.get('mathjax_configuration', []) %}<script src="js/{{ js }}" defer></script>{% endfor %}
+<script src="{{ mathjax_url }}" defer></script>
 </head>
 
 <body>

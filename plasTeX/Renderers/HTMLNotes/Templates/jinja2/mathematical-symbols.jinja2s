@@ -97,7 +97,7 @@ name: alpha theta tau beta vartheta pi upsilon \
       nVDash ntriangleright ntrianglerighteq nsupseteq \
       nsupseteqq supsetneq varsupsetneq supsetneqq \
       varsupsetneqq
-{{ '\\%s{}' % obj.nodeName }}
+{{ '\\%s' % obj.nodeName }}
 
 name: hat acute bar dot breve check grave vec \
       ddot tilde \
