@@ -95,6 +95,26 @@ git-push-current-branch:
 	git push --set-upstream origin ${GIT_CURRENT_BRANCH}
 
 ### ==================================================================
+### Targets for git push-force
+### ==================================================================
+
+define GIT_PUSH_FORCE_template =
+.PHONY: git-push-force-$1
+
+git-push-force-$1: git-branch-$1
+	git push --force --set-upstream origin $1
+
+endef
+
+$(foreach branch,${GIT_BRANCHES},$(eval $(call \
+			GIT_PUSH_FORCE_template,${branch})))
+
+.PHONY: git-push-force-current-branch
+
+git-push-force-current-branch:
+	git push --force --set-upstream origin ${GIT_CURRENT_BRANCH}
+
+### ==================================================================
 ### Targets for git pull
 ### ==================================================================
 
@@ -117,6 +137,26 @@ git-pull-current-branch:
 	git pull --no-rebase
 
 ### ==================================================================
+### Targets for git rebase
+### ==================================================================
+
+define GIT_REBASE_template =
+.PHONY: git-rebase-$1
+
+git-rebase-$1: git-checkout-$1
+	git rebase --interactive origin/master
+	git checkout ${GIT_CURRENT_BRANCH}
+endef
+
+$(foreach branch,${GIT_BRANCHES},$(eval $(call \
+			GIT_REBASE_template,${branch})))
+
+.PHONY: git-rebase-current-branch
+
+git-rebase-current-branch:
+	git rebase --interactive origin/master
+
+### ==================================================================
 ### Targets for git merge
 ### ==================================================================
 
@@ -125,7 +165,7 @@ define GIT_MERGE_template =
 
 git-merge-$1-into-$2: git-branch-$1 git-branch-$2
 	git checkout $2
-	git merge $1
+	git merge --no-ff $1
 	git checkout ${GIT_CURRENT_BRANCH}
 endef
 
@@ -138,7 +178,7 @@ ifneq (${GIT_CURRENT_BRANCH},master)
 
 git-merge-current-branch-into-master:
 	git checkout master
-	git merge ${GIT_CURRENT_BRANCH}
+	git merge --no-ff ${GIT_CURRENT_BRANCH}
 	git checkout ${GIT_CURRENT_BRANCH}
 endif
 
