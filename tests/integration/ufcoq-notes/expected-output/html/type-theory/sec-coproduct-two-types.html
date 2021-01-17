@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content="plasTeX">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type theory: The coproduct of two types</title><link rel="next" href="sec-natural-numbers.html" title="Natural numbers"><link rel="prev"  href="sec-boolean-type.html" title="The boolean type"><link rel="parent" href="index.html" title="Type theory"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&amp;family=Roboto+Mono&amp;display=swap">
+<link rel="stylesheet" href="styles/theme-default.css"><script src="js/mathjax-configuration.js" defer></script><script src="js/mathjax/tex-chtml.js" defer></script>
+</head>
+
+<body>
+<nav class="toc">
+<svg  class="icon icon-cross close-toc"><use href="symbol-defs.svg#icon-cross"></use></svg>
+<ul class="sub-toc-0">
+<li class="inactive non-current">
+<a href="sec-introduction.html"><span class="toc_ref">1</span>
+<span class="toc_entry">Introduction</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-universes.html"><span class="toc_ref">2</span>
+<span class="toc_entry">Universes</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-pi-types.html"><span class="toc_ref">3</span>
+<span class="toc_entry">Pi types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-function-types.html"><span class="toc_ref">4</span>
+<span class="toc_entry">Function types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-some-basic-functions.html"><span class="toc_ref">5</span>
+<span class="toc_entry">Some basic functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-comp-funct.html"><span class="toc_ref">6</span>
+<span class="toc_entry">Composition of functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-famil-as-funct.html"><span class="toc_ref">7</span>
+<span class="toc_entry">Families as functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-sigma-types.html"><span class="toc_ref">8</span>
+<span class="toc_entry">Sigma types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-product-two-types.html"><span class="toc_ref">9</span>
+<span class="toc_entry">The product of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-empty-type.html"><span class="toc_ref">10</span>
+<span class="toc_entry">The empty type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-unit-type.html"><span class="toc_ref">11</span>
+<span class="toc_entry">The unit type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-boolean-type.html"><span class="toc_ref">12</span>
+<span class="toc_entry">The boolean type</span>
+</a>
+</li>
+<li class="active current">
+<a href="sec-coproduct-two-types.html"><span class="toc_ref">13</span>
+<span class="toc_entry">The coproduct of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-natural-numbers.html"><span class="toc_ref">14</span>
+<span class="toc_entry">Natural numbers</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-paths.html"><span class="toc_ref">15</span>
+<span class="toc_entry">Paths</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="wrapper with-toc">
+<header>
+<h1 id="doc_title">Type theory</h1>
+</header>
+<ul class="breadcrumbs">
+<li class="crumb">
+<a href="index.html" class="crumb">Type theory</a>
+</li>
+<li class="last_crumb">The coproduct of two types</li>
+</ul>
+<div class="content">
+<h1 id="sec:coproduct-two-types"><span class="section-number">13</span> <span class="section-title">The coproduct of two types</span></h1>
+
+<p>Suppose <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> are types. We are then given a type <span class="equationstar">\begin{equation*}X \sqcup{} Y.\end{equation*}</span> We are also given two functions <span class="equationstar">\begin{equation*}\operatorname{i}_{1}\mathrel{:}X \toX \sqcup{} Y, \quad{}\operatorname{i}_{2}\mathrel{:}Y \toX \sqcup{} Y.\end{equation*}</span> They are called the <em class="docbook_firstTerm">canonical functions</em> from <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> to <span class="math">\(X \sqcup{} Y\)</span>. Objects of the form <span class="math">\(\operatorname{i}_{1}(x)\)</span> or <span class="math">\(\operatorname{i}_{2}(y)\)</span>, where <span class="math">\(x \mathrel{:}X\)</span> and <span class="math">\(y \mathrel{:}Y\)</span>, are called the <em class="docbook_firstTerm">canonical elements</em> of <span class="math">\(X \sqcup{} Y\)</span>.</p>
+<p>For every family <span class="equationstar">\begin{equation*}F \mathrel{:}X \sqcup{} Y \to\mathscr{U},\end{equation*}</span> every selection <span class="math">\(f\)</span> for the family <span class="equationstar">\begin{equation*}F \circ\operatorname{i}_{1}\mathrel{:}X \to\mathscr{U},\end{equation*}</span> and every selection <span class="math">\(g\)</span> for the family <span class="equationstar">\begin{equation*}F \circ\operatorname{i}_{2}\mathrel{:}Y \to\mathscr{U},\end{equation*}</span> we are given a selection <span class="math">\(\phi_{F,f,g}\)</span> for <span class="math">\(F\)</span> with the property that <span class="equationstar">\begin{equation*}\phi_{F,f,g} (\operatorname{i}_{1}(x)) \equivf(x), \quad{}\phi_{F,f,g} (\operatorname{i}_{2}(y)) \equivg(y)\end{equation*}</span> for all <span class="math">\(x \mathrel{:}X\)</span> and <span class="math">\(y \mathrel{:}Y\)</span>. We call <span class="math">\(\phi_{F,f,g}\)</span> the selection for <span class="math">\(F\)</span> <em class="docbook_firstTerm">induced</em> by <span class="math">\(f\)</span> and <span class="math">\(g\)</span>.</p>
+<p>Now take <span class="math">\(F\)</span> to be the constant family on <span class="math">\(X \sqcup{} Y\)</span> with value <span class="math">\(Z\)</span>, where <span class="math">\(Z\)</span> is any type. Consider any two functions <span class="equationstar">\begin{equation*}f \mathrel{:}X \toZ, \quad{}g \mathrel{:}Y \toZ.\end{equation*}</span> The above provision then gives us a function <span class="equationstar">\begin{equation*}\phi_{f,g} \mathrel{:}X \sqcup{} Y \toZ\end{equation*}</span> such that <span class="equationstar">\begin{equation*}\phi_{f,g} (\operatorname{i}_{1}(x)) \equivf(x), \quad{}\phi_{f,g} (\operatorname{i}_{2}(y)) \equivg(y)\end{equation*}</span> for all <span class="math">\(x \mathrel{:}X\)</span> and <span class="math">\(y \mathrel{:}Y\)</span>. It is called the function from <span class="math">\(X \sqcup{} Y\)</span> to <span class="math">\(Z\)</span> <em class="docbook_firstTerm">induced</em> by <span class="math">\(f\)</span> and <span class="math">\(g\)</span>.</p>
+
+</div>
+<nav class="prev_up_next">
+<a href="sec-boolean-type.html" title="The boolean type"><svg  class="icon icon-arrow-left "><use href="symbol-defs.svg#icon-arrow-left"></use></svg></a>
+<a href="index.html" title="Type theory"><svg  class="icon icon-arrow-up "><use href="symbol-defs.svg#icon-arrow-up"></use></svg></a>
+<a href="sec-natural-numbers.html" title="Natural numbers"><svg  class="icon icon-arrow-right "><use href="symbol-defs.svg#icon-arrow-right"></use></svg></a>
+<svg id="toc-toggle"  class="icon icon-list-numbered "><use href="symbol-defs.svg#icon-list-numbered"></use></svg>
+</nav>
+<script src="js/jquery.min.js"></script>
+<script src="js/plastex.js"></script>
+<script src="js/svgxuse.js"></script>
+</div>
+</body>
+</html>

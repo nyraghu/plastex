@@ -1,0 +1,550 @@
+ul.breadcrumbs {
+  margin: 1rem 0 0 0;
+  padding: 0 0 0 0.5rem;
+  list-style: none;
+  font-size: small;
+}
+
+ul.breadcrumbs li {
+  display: inline;
+}
+
+ul.breadcrumbs a {
+  text-decoration: none;
+}
+
+li.crumb::after {
+  content: " / ";
+}
+
+ol.bibliography_list {
+  margin: 2.1rem 0;
+}
+
+li.bibliography_entry::marker {
+  font-weight: bold;
+}
+
+li.bibliography_entry {
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+span.bibliography_entry_title_block {
+  font-weight: bold;
+  /* https://css-tricks.com/injecting-line-break/
+     #exploiting-table-layout */
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_subtitle_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_xref_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_xref_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_article_pages {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_article_journal_volume_year_pages_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_article_journal_name {
+  font-style: italic;
+}
+
+span.bibliography_entry_article_journal_volume {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+span.bibliography_entry_article_journal_year {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_arxiv_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_arxiv_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_arxiv_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_doi_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_doi_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_doi_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_url_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_url_name {
+  font-variant-caps: small-caps;
+}
+
+span.bibliography_entry_url_link {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_book_edition_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_series_volume_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_volume {
+  margin-left: 0.5rem;
+}
+
+span.bibliography_entry_book_publisher_year_block {
+  display: table;
+  margin: 0.6rem 0;
+}
+
+span.bibliography_entry_book_year {
+  margin-left: 0.5rem;
+}
+
+ul.bibliography_entry_citations {
+  list-style-type: circle;
+}
+
+li.bibliography_entry_citation {
+  font-size: 0.9rem;
+}
+
+span.bibliography_entry_citation_prefix {
+  margin-right: 0.25rem;
+}
+
+code {
+  font-family: "Roboto Mono", Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
+  font-size: 0.9rem;
+  hyphens: none;
+  text-align: start;
+  text-transform: none;
+}
+
+pre {
+  border-left-style: solid;
+  border-width: 0.5rem;
+  margin: 1rem auto;
+  overflow: auto;
+  padding: 0.5rem;
+  page-break-inside: avoid;
+}
+
+pre.coq {
+  background: #ffe6ff;
+  border-color: #ff99ff;
+  color: inherit;
+}
+
+pre.text {
+  background: #E9FBE9;
+  border-color: #52E052;
+  color: inherit;
+}
+
+nav.toc {
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  right: 0;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+  width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: left 0.5s ease;
+  color: inherit;
+}
+@media (min-width: 1024px) {
+  nav.toc {
+    width: 30rem;
+  }
+}
+
+nav.active {
+  width: 100%;
+}
+
+.toc ul {
+  min-width: 100%;
+  padding-left: 0;
+  list-style: none;
+}
+.toc ul a {
+  font-size: 1.2rem;
+  display: inline-block;
+  max-width: 90%;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  transition: all 0.1s ease;
+  text-align: left;
+  text-decoration: none;
+  flex-grow: 1;
+}
+.toc ul a:hover {
+  transition: all 0.2s ease;
+}
+.toc ul li {
+  display: flex;
+  min-width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+ul.sub-toc-0 {
+  margin-top: 0;
+}
+
+ul.sub-toc-0 li a span.toc_ref {
+  margin-right: 0.75rem;
+}
+
+.sub-toc-0 a {
+  padding-left: 0.8rem;
+}
+
+.sub-toc-1 a {
+  padding-left: 1.6rem;
+}
+
+.sub-toc-2 a {
+  padding-left: 2.4rem;
+}
+
+.sub-toc-3 a {
+  padding-left: 3.2rem;
+}
+
+.sub-toc-4 a {
+  padding-left: 4rem;
+}
+
+ul.sub-toc-1 {
+  display: none;
+}
+
+ul.sub-toc-2 {
+  display: none;
+}
+
+ul.sub-toc-3 {
+  display: none;
+}
+
+ul.sub-toc-4 {
+  display: none;
+}
+
+svg.expand-toc {
+  min-width: 10%;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+svg.close-toc {
+  min-width: 1.3rem;
+  min-height: 1.3rem;
+  margin: 0.5rem auto 0.5rem 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  display: none;
+}
+
+nav.active svg.close-toc {
+  display: inline-block;
+}
+
+ul.active {
+  display: block;
+}
+
+.wrapper header {
+  z-index: 400;
+  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  top: 0;
+  left: 0;
+}
+
+svg#toc-toggle {
+  font-size: 1.125rem;
+  margin-right: auto;
+  margin-left: 0.75rem;
+}
+@media (min-width: 1024px) {
+  svg#toc-toggle {
+    display: none;
+  }
+}
+
+h1#doc_title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+nav.prev_up_next {
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  height: 2.5rem;
+}
+nav.prev_up_next a {
+  font-size: 120%;
+  margin: auto;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.8);
+}
+nav.prev_up_next svg#toc-toggle {
+  font-size: 120%;
+  margin: auto;
+  min-width: 2rem;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+nav.prev_up_next a.index {
+  font-size: small;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Domine", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  display: flex;
+  flex-direction: row;
+}
+
+div.wrapper {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  div.with-toc {
+    margin-right: 30rem;
+  }
+}
+
+div.content {
+  margin: 0 auto;
+  max-width: 50rem;
+  padding: 1rem 1rem 2.5rem 1rem;
+}
+
+div.theorem-style-theorem {
+  font-style: italic;
+}
+
+div.definition-style-theorem {
+  font-style: normal;
+}
+
+span.theorem-heading {
+  margin-right: 0.5rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+span.theorem-number {
+  margin-right: 0.25rem;
+}
+
+span.theorem-note {
+  margin-left: 0.25rem;
+}
+
+div.proof {
+  font-style: normal;
+}
+
+span.proof-heading {
+  margin-right: 0.5rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+span.qed {
+  float: right;
+}
+
+div.content {
+  line-height: 1.4rem;
+}
+
+div.content > p {
+  margin: 2.1rem 0;
+}
+
+li > p {
+  margin: 0.28rem 0;
+}
+
+.icon {
+  display: inline-block;
+  user-select: none;
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin: 1rem 0;
+}
+
+h1 span.section-number {
+  margin-right: 0.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0.8rem 0;
+}
+
+p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.title-page {
+  text-align: center;
+}
+
+.title-page h1 {
+  font-weight: normal;
+}
+
+.title-page h2 {
+  font-weight: normal;
+}
+
+span.nowrap {
+  white-space: nowrap;
+}
+
+body {
+  color: black;
+  background-color: white;
+}
+
+ul.breadcrumbs a {
+  color: #022843;
+  background-color: transparent;
+}
+
+.wrapper header {
+  background-image: linear-gradient(to bottom, #034675 0%, #010a11 100%);
+  color: white;
+  background-color: transparent;
+}
+
+h1#doc_title {
+  color: white;
+  background-color: transparent;
+}
+
+nav.prev_up_next {
+  background: linear-gradient(to bottom, #034675 0%, #010a11 100%);
+}
+
+nav.toc {
+  background-color: #034675;
+}
+
+.toc ul a {
+  color: white;
+  background-color: transparent;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+}
+
+.toc ul li {
+  background-color: #034675;
+  color: inherit;
+}
+
+.toc ul li.current {
+  background-color: #0563a6;
+  color: inherit;
+}
+
+svg.expand-toc {
+  color: white;
+  background-color: transparent;
+}
+
+svg.close-toc {
+  color: white;
+  background-color: Transparent;
+}
+
+h1 {
+  color: black;
+  background-color: transparent;
+}
+
+h2 {
+  color: black;
+  background-color: transparent;
+}

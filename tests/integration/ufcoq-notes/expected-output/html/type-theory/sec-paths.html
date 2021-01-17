@@ -1,0 +1,133 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content="plasTeX">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type theory: Paths</title><link rel="prev"  href="sec-natural-numbers.html" title="Natural numbers"><link rel="parent" href="index.html" title="Type theory"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&amp;family=Roboto+Mono&amp;display=swap">
+<link rel="stylesheet" href="styles/theme-default.css"><script src="js/mathjax-configuration.js" defer></script><script src="js/mathjax/tex-chtml.js" defer></script>
+</head>
+
+<body>
+<nav class="toc">
+<svg  class="icon icon-cross close-toc"><use href="symbol-defs.svg#icon-cross"></use></svg>
+<ul class="sub-toc-0">
+<li class="inactive non-current">
+<a href="sec-introduction.html"><span class="toc_ref">1</span>
+<span class="toc_entry">Introduction</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-universes.html"><span class="toc_ref">2</span>
+<span class="toc_entry">Universes</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-pi-types.html"><span class="toc_ref">3</span>
+<span class="toc_entry">Pi types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-function-types.html"><span class="toc_ref">4</span>
+<span class="toc_entry">Function types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-some-basic-functions.html"><span class="toc_ref">5</span>
+<span class="toc_entry">Some basic functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-comp-funct.html"><span class="toc_ref">6</span>
+<span class="toc_entry">Composition of functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-famil-as-funct.html"><span class="toc_ref">7</span>
+<span class="toc_entry">Families as functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-sigma-types.html"><span class="toc_ref">8</span>
+<span class="toc_entry">Sigma types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-product-two-types.html"><span class="toc_ref">9</span>
+<span class="toc_entry">The product of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-empty-type.html"><span class="toc_ref">10</span>
+<span class="toc_entry">The empty type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-unit-type.html"><span class="toc_ref">11</span>
+<span class="toc_entry">The unit type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-boolean-type.html"><span class="toc_ref">12</span>
+<span class="toc_entry">The boolean type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-coproduct-two-types.html"><span class="toc_ref">13</span>
+<span class="toc_entry">The coproduct of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-natural-numbers.html"><span class="toc_ref">14</span>
+<span class="toc_entry">Natural numbers</span>
+</a>
+</li>
+<li class="active current">
+<a href="sec-paths.html"><span class="toc_ref">15</span>
+<span class="toc_entry">Paths</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="wrapper with-toc">
+<header>
+<h1 id="doc_title">Type theory</h1>
+</header>
+<ul class="breadcrumbs">
+<li class="crumb">
+<a href="index.html" class="crumb">Type theory</a>
+</li>
+<li class="last_crumb">Paths</li>
+</ul>
+<div class="content">
+<h1 id="sec:paths"><span class="section-number">15</span> <span class="section-title">Paths</span></h1>
+
+<p>Let us fix a type <span class="math">\(X\)</span>, and an element <span class="math">\(x \mathrel{:}X\)</span>. We are then given a family of types <span class="equationstar">\begin{equation*}\operatorname{Path}_{x} \mathrel{:}X \to\mathscr{U}\end{equation*}</span> on <span class="math">\(X\)</span>, called the <em class="docbook_firstTerm">path family</em> of <span class="math">\(x\)</span>. For any element <span class="math">\(y \mathrel{:}X\)</span>, we will denote the type <span class="equationstar">\begin{equation*}\operatorname{Path}_{x} (y) \mathrel{:}\mathscr{U}\end{equation*}</span> by <span class="equationstar">\begin{equation*}x = y.\end{equation*}</span> Each of its elements is called a <em class="docbook_firstTerm">path</em> from <span class="math">\(x\)</span> to <span class="math">\(y\)</span>.</p>
+<p>An element of the type <span class="equationstar">\begin{equation*}x = x\end{equation*}</span> is called a <em class="docbook_firstTerm">loop</em> at <span class="math">\(x\)</span>. We are given a loop <span class="equationstar">\begin{equation*}\epsilon_{x} \mathrel{:}x = x.\end{equation*}</span> It is called the <em class="docbook_firstTerm">identity loop</em> at <span class="math">\(x\)</span>.</p>
+<p>For every element <span class="equationstar">\begin{equation*}F \mathrel{:}\Pi{}(y \mathrel{:}X).\, x = y \to\mathscr{U},\end{equation*}</span> and for every element <span class="equationstar">\begin{equation*}a \mathrel{:}F(x)(\epsilon_{x}),\end{equation*}</span> we are given an element <span class="equationstar">\begin{equation*}\phi_{F,a} \mathrel{:}\Pi{}(y \mathrel{:}X) (p \mathrel{:}x = y).\, F(y)(p)\end{equation*}</span> such that <span class="equationstar">\begin{equation*}\phi_{F,a}(x)(\epsilon_{x}) \equiva.\end{equation*}</span> We say that <span class="math">\(\phi_{F,a}(y)(p)\)</span> is obtained by <em class="docbook_firstTerm">transporting</em> <span class="math">\(a\)</span> along the path <span class="math">\(p\)</span> from <span class="math">\(x\)</span> to <span class="math">\(y\)</span>.</p>
+<p>We are using here the convention that the path operator has higher precedence than the arrow. So <span class="equationstar">\begin{equation*}x = y \to\mathscr{U}\end{equation*}</span> means <span class="equationstar">\begin{equation*}(x = y) \to\mathscr{U},\end{equation*}</span> not <span class="equationstar">\begin{equation*}x = (y \to\mathscr{U}).\end{equation*}</span></p>
+<p>We are also ignoring the problem that the object <span class="equationstar">\begin{equation*}\Pi{}(y \mathrel{:}X).\, x = y \to\mathscr{U}\end{equation*}</span> is not defined as <span class="math">\(\mathscr{U}\)</span> is not an element of <span class="math">\(\mathscr{U}\)</span>. However, if <span class="math">\(\mathscr{U}\equiv\mathscr{U}_{i}\)</span>, and if we redo the earlier development with <span class="math">\(\mathscr{U}_{+}\)</span> in the place of <span class="math">\(\mathscr{U}\)</span>, where <span class="math">\(\mathscr{U}_{+} \equiv\mathscr{U}_{i+1}\)</span>, then <span class="equationstar">\begin{equation*}\Pi{}(y \mathrel{:}X).\, x = y \to\mathscr{U}\end{equation*}</span> becomes a well-defined type for every <span class="math">\(y \mathrel{:}X\)</span>. This argument is like the one in <a href="sec-famil-as-funct.html">Section&nbsp;7</a> that justified the practice of looking at families as functions. We will skip such justification from now.</p>
+<p>We can specialise the above discussion to the situation when <span class="equationstar">\begin{equation*}F(y)(p) \equivG(y)\end{equation*}</span> is independent of <span class="math">\(p\)</span>. So for every family of types <span class="equationstar">\begin{equation*}G \mathrel{:}X \to\mathscr{U},\end{equation*}</span> and every element <span class="equationstar">\begin{equation*}a \mathrel{:}G(x),\end{equation*}</span> we get an element <span class="equationstar">\begin{equation*}\phi_{G,a} \mathrel{:}\Pi{}(y \mathrel{:}X).\, x = y \toG(y)\end{equation*}</span> such that <span class="equationstar">\begin{equation*}\phi_{G,a}(x)(\epsilon_{x}) \equiva.\end{equation*}</span> Again <span class="math">\(\phi_{G,a}(y)(p)\)</span> is called the element obtained by <em class="docbook_firstTerm">transporting</em> <span class="math">\(a\)</span> along <span class="math">\(p\)</span>.</p>
+<p>Let us lastly look at the even more special case when <span class="math">\(G\)</span> is a constant family. For every type <span class="equationstar">\begin{equation*}H \mathrel{:}\mathscr{U},\end{equation*}</span> and for every element <span class="equationstar">\begin{equation*}a \mathrel{:}H,\end{equation*}</span> we get an element <span class="equationstar">\begin{equation*}\phi_{H,a} \mathrel{:}\Pi{}(y \mathrel{:}X).\, x = y \toH\end{equation*}</span> such that <span class="equationstar">\begin{equation*}\phi_{H,e}(x)(\epsilon_{x}) \equiva.\end{equation*}</span> If <span class="math">\(p\)</span> is a path from <span class="math">\(x\)</span> to <span class="math">\(y\)</span>, we say then too that <span class="math">\(\phi_{H,a}(y)(p)\)</span> is obtained by <em class="docbook_firstTerm">transporting</em> <span class="math">\(a\)</span> along <span class="math">\(p\)</span>.</p>
+
+</div>
+<nav class="prev_up_next">
+<a href="sec-natural-numbers.html" title="Natural numbers"><svg  class="icon icon-arrow-left "><use href="symbol-defs.svg#icon-arrow-left"></use></svg></a>
+<a href="index.html" title="Type theory"><svg  class="icon icon-arrow-up "><use href="symbol-defs.svg#icon-arrow-up"></use></svg></a>
+<svg id="toc-toggle"  class="icon icon-list-numbered "><use href="symbol-defs.svg#icon-list-numbered"></use></svg>
+</nav>
+<script src="js/jquery.min.js"></script>
+<script src="js/plastex.js"></script>
+<script src="js/svgxuse.js"></script>
+</div>
+</body>
+</html>

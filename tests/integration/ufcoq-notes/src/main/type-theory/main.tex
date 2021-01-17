@@ -1,0 +1,1040 @@
+%%% Basic concepts of type theory
+
+\documentclass{article}
+
+\usepackage[prefix=BN]{basicnotes}
+
+\usepackage[prefix=DB]{docbook}
+
+\usepackage[prefix=TT]{typetheory}
+
+\BNsetTitle{Notes on univalent foundations with Coq}
+
+\BNtitle{Type theory}
+
+\BNauthor{N. Raghavendra}
+
+\BNdate{2020-02-14}
+
+\begin{document}
+
+\BNmakeTitle
+
+\begin{abstract}
+  This document is about some basic concepts of type theory.  It is a
+  part of a set of notes on univalent foundations with Coq.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\label{sec:introduction}
+
+Type theory is a system of foundations for mathematics.  There is only
+one primitive notion in this system, the concept of an
+\DBfirstTerm{object}.  We are allowed to make only one kind of
+statement about objects, that one object is an \DBfirstTerm{element}
+of another.  The theory provides certain objects, certain ways of
+constructing new objects from old ones, and certain statements about
+elements of these objects.
+
+For any two objects $x$ and $X$, we write
+\begin{equation*}
+  x \TTelement X
+\end{equation*}
+to indicate that $x$ is an element of $X$.
+
+We will assume that we know what it means to say that two things, such
+as two objects, are the \DBfirstTerm{same}.  The notation
+\begin{equation*}
+  x \TTsame y
+\end{equation*}
+means that the objects $x$ and $y$ are the same.
+
+\section{Universes}
+\label{sec:universes}
+
+Type theory begins by giving an infinite sequence
+\begin{equation*}
+  \TTuniverse[0], \TTuniverse[1], \dotsc
+\end{equation*}
+of objects called \DBfirstTerm{universes}.  We will call the index $i$
+the \DBfirstTerm{grade} of the universe $\TTuniverse[i]$.
+
+We are given that the sequence of universes has the following two
+properties:
+\begin{enumerate}
+\item \label{item:1} (\emph{Hierarchy}) The object $\TTuniverse[i]$ is
+  an element of $\TTuniverse[i+1]$ for every $i$.  In the notation
+  introduced above,
+  \begin{equation*}
+    \TTuniverse[i] \TTelement \TTuniverse[i+1].
+  \end{equation*}
+\item \label{item:2} (\emph{Cumulativity}) Every element of
+  $\TTuniverse[i]$ is an element of $\TTuniverse[i+1]$ also.  In
+  symbols, if $X \TTelement \TTuniverse[i]$, then
+  $X \TTelement \TTuniverse[i+1]$.
+\end{enumerate}
+
+Let us now fix one of the given universes $\TTuniverse[i]$, and denote
+it by $\TTuniverse$.  An element of this fixed universe $\TTuniverse$
+is called a \DBfirstTerm{type}.
+
+A \DBfirstTerm{family} of types on a type
+\begin{equation*}
+  X \TTelement \TTuniverse
+\end{equation*}
+is an assignment that attaches a type
+\begin{equation*}
+  Y_x \TTelement \TTuniverse
+\end{equation*}
+to every element $x \TTelement X$.  We denote this family by
+\begin{equation*}
+  (Y_x)_{x \TTelement X}.
+\end{equation*}
+The type $X$ is called the \DBfirstTerm{base} of the family.  If it is
+obvious from the context, we may simply write
+\begin{equation*}
+  (Y_x)
+\end{equation*}
+for the family.
+
+\section{Pi types}
+\label{sec:pi-types}
+
+Let us now look at a family of types
+\begin{equation*}
+  (Y_x)_{x \TTelement X}.
+\end{equation*}
+According to the above definition, this means that
+\begin{equation*}
+  X \TTelement \TTuniverse,
+\end{equation*}
+and we are given a type
+\begin{equation*}
+  Y_x \TTelement \TTuniverse
+\end{equation*}
+for each element $x \TTelement X$.
+
+A \DBfirstTerm{selection} for this family is an assignment $f$ that
+attaches an element
+\begin{equation*}
+  f(x) \TTelement Y_x
+\end{equation*}
+to every element $x \TTelement X$.  The object $f(x)$ is called the
+\DBfirstTerm{value} of $f$ at $x$.
+
+For every family
+\begin{equation*}
+  (Y_x)_{x \TTelement X},
+\end{equation*}
+we are given a type
+\begin{equation*}
+  \TTpiType[(x \TTelement X)] Y_x,
+\end{equation*}
+whose elements are exactly the selections for the family.  This type
+is called the \DBfirstTerm{Pi type} of the family.
+
+The definition of a type implies that the Pi type is an element of
+$\TTuniverse$:
+\begin{equation*}
+  \TTpiType[(x \TTelement X)] Y_x \TTelement \TTuniverse.
+\end{equation*}
+We may just write
+\begin{equation*}
+  \TTpiType[x] Y_x
+\end{equation*}
+for the Pi type if the base type $X$ is obvious.
+
+Suppose we are given an element
+\begin{equation*}
+  y_x \TTelement Y_x
+\end{equation*}
+for every element $x \TTelement X$.  We then have a selection for the
+family, whose value at $x \TTelement X$ is $y_x$.  We denote this
+selection by
+\begin{equation*}
+  \TTabstraction[(x \TTelement X)] y_x.
+\end{equation*}
+A selection defined like this is called a
+\DBfirstTerm{$\lambda$-abstraction}, or just an
+\DBfirstTerm{abstraction}.
+
+This definition means that
+\begin{equation*}
+  (\TTabstraction[(x \TTelement X)] y_x) (a) \TTsame y_a
+\end{equation*}
+for all $a \TTelement X$.  We may just write
+\begin{equation*}
+  \TTabstraction[(x)] y_x
+\end{equation*}
+for the abstraction if the base type is obvious.
+
+If we start with a selection $f$ for the family, we can take $y_x$ to
+be $f(x)$ in the above description, and get another selection
+\begin{equation*}
+  \TTabstraction[(x \TTelement X)] f(x).
+\end{equation*}
+Both $f$ and this selection are assignments that attach the same value
+\begin{equation*}
+  f(x) \TTelement Y_x
+\end{equation*}
+to every element $x \TTelement X$.  So the two selections are the
+same:
+\begin{equation*}
+  f \TTsame \TTabstraction[(x \TTelement X)] f(x).
+\end{equation*}
+This relation is called \DBfirstTerm{$\eta$-conversion} for
+selections.  The abstraction on its right hand side is called the
+\DBfirstTerm{$\eta$-expansion} of $f$.
+
+We will use the following compact notation for iterated Pi types.  If
+\begin{equation*}
+  (Y_x)_{x \TTelement X}
+\end{equation*}
+is a family of types, and if for every $x \TTelement X$, we are given
+a family
+\begin{equation*}
+  (Z_{xy})_{y \TTelement Y_x},
+\end{equation*}
+we will denote
+\begin{equation*}
+  \TTpiType[(x \TTelement X)]
+  (\TTpiType[(y \TTelement Y_x)] Z_{xy})
+\end{equation*}
+by
+\begin{equation*}
+  \TTpiType[(x \TTelement X) (y \TTelement Y_x)] Z_{xy}.
+\end{equation*}
+
+If we are given an element
+\begin{equation*}
+  z_{xy} \TTelement Z_{xy}
+\end{equation*}
+for every $x \TTelement X$ and $y \TTelement Y_x$, we will denote the
+selection
+\begin{equation*}
+  \TTabstraction[(x \TTelement X)]
+  (\TTabstraction[(y \TTelement Y_x)] z_{xy})
+\end{equation*}
+by
+\begin{equation*}
+  \TTabstraction[(x \TTelement X) (y \TTelement Y_x)] z_{xy}.
+\end{equation*}
+
+We will drop the types $X$ and $Y_x$ from the notation if they are
+obvious, and simply write
+\begin{equation*}
+  \TTpiType[x y] Z_{xy}
+\end{equation*}
+and
+\begin{equation*}
+  \TTabstraction[x y] z_{xy}.
+\end{equation*}
+
+We will use the same kind of notation even when there are more than
+two indices.
+
+We will also use the convention that the scope of the Pi operator in
+any expression is the entire right of the expression unless stopped by
+parentheses.  So an expression like
+\begin{equation*}
+  \TTpiType[(y \TTelement X)] x = y
+\end{equation*}
+means
+\begin{equation*}
+  \TTpiType[(y \TTelement X)] (x = y),
+\end{equation*}
+not
+\begin{equation*}
+  (\TTpiType[(y \TTelement X)] x) = y.
+\end{equation*}
+
+\section{Function types}
+\label{sec:function-types}
+
+Any two types $X$ and $Y$ give us a family of types
+\begin{equation*}
+  (Y_x)_{x \TTelement X}
+\end{equation*}
+on $X$, where
+\begin{equation*}
+  Y_x \TTsame Y
+\end{equation*}
+for all $x \TTelement X$.  We call this the \DBfirstTerm{constant
+  family} on $X$ with \DBfirstTerm{value} $Y$.
+
+A selection for this family is called a \DBfirstTerm{function} from
+$X$ to $Y$.  It is an assignment $f$ that attaches an element
+\begin{equation*}
+  f(x) \TTelement Y
+\end{equation*}
+to every element $x \TTelement X$.
+
+The Pi type of the family is denoted by
+\begin{equation*}
+  X \to Y.
+\end{equation*}
+It is called the \DBfirstTerm{function type} of $X$ and $Y$.  It is an
+element of the fixed universe $\TTuniverse$.  Its elements are exactly
+the functions from $X$ to $Y$.
+
+For any function
+\begin{equation*}
+  f \TTelement X \to Y,
+\end{equation*}
+the type $X$ is called the \DBfirstTerm{domain} of $f$ and is denoted
+by $\TTdomain{f}$, while $Y$ is called the \DBfirstTerm{codomain} of
+$f$ and is denoted by $\TTcodomain{f}$.
+
+Given an element
+\begin{equation*}
+  y_x \TTelement Y
+\end{equation*}
+for every element $x \TTelement X$, we have the abstraction
+\begin{equation*}
+  \TTabstraction[(x \TTelement X)] y_x \TTelement X \to Y,
+\end{equation*}
+which is a function with the property that
+\begin{equation*}
+  (\TTabstraction[(x \TTelement X)] y_x) (a) \TTsame y_a
+\end{equation*}
+for all $a \TTelement X$.
+
+Conversely, every function
+\begin{equation*}
+  f \TTelement X \to Y
+\end{equation*}
+is the same as its abstraction:
+\begin{equation*}
+  f \TTsame \TTabstraction[(x \TTelement X)] f(x).
+\end{equation*}
+This fact is called \DBfirstTerm{$\eta$-conversion} for functions.
+
+\section{Some basic functions}
+\label{sec:some-basic-functions}
+
+We will see many examples of selections and functions as we go on.
+For now, we will describe just a couple of functions that we need
+immediately.
+
+The \DBfirstTerm{identity function} of a type $X$ is a standard
+example of a function.  It is the function
+\begin{equation*}
+  \TTidFunction[X] \TTelement X \to X
+\end{equation*}
+defined by
+\begin{equation*}
+  \TTidFunction[X] (x) \TTsame x
+\end{equation*}
+for all $x \TTelement X$.  In terms of abstractions,
+\begin{equation*}
+  \TTidFunction[X] \TTsame \TTabstraction[(x \TTelement X)] x.
+\end{equation*}
+
+Another class of examples of a function are the constant functions.
+Suppose $X$ and $Y$ are types, and $y$ an element of $Y$.  We then
+have a function
+\begin{equation*}
+  c_y \TTelement X \to Y
+\end{equation*}
+defined by
+\begin{equation*}
+  c_y \TTsame \TTabstraction[(x \TTelement X)] y.
+\end{equation*}
+It is called the \DBfirstTerm{constant function} on $X$ with value
+$y$.  As $y$ runs over $Y$, we get an element
+\begin{equation*}
+  c \TTelement Y \to X \to Y
+\end{equation*}
+given by
+\begin{equation*}
+  c \TTsame \TTabstraction[(y \TTelement Y)] c_y.
+\end{equation*}
+
+We are following the convention that the arrow operator is right
+associative.  So
+\begin{equation*}
+  Y \to X \to Y
+\end{equation*}
+means
+\begin{equation*}
+  Y \to (X \to Y),
+\end{equation*}
+not
+\begin{equation*}
+  (Y \to X) \to Y.
+\end{equation*}
+
+\section{Composition of functions}
+\label{sec:comp-funct}
+
+The \DBfirstTerm{composite} of two functions
+\begin{equation*}
+  f \TTelement X \to Y, \quad
+  g \TTelement X \to Z
+\end{equation*}
+is the function
+\begin{equation*}
+  g \circ f \TTelement X \to Z
+\end{equation*}
+defined by
+\begin{equation*}
+  g \circ f \TTsame \TTabstraction[(x \TTelement X)] g(f(x)).
+\end{equation*}
+When we vary $f$ and $g$, we get an element
+\begin{equation*}
+  \phi \TTelement (X \to Y) \to (Y \to Z) \to X \to Z
+\end{equation*}
+given by
+\begin{equation*}
+  \phi \TTsame
+  \TTabstraction[(f \TTelement X \to Y) (g \TTelement Y \to Z)]
+  g \circ f.
+\end{equation*}
+
+We are using the convention that the scope of the lambda operator, as
+with the Pi operator, is the entire right of the expression unless
+stopped by parentheses.  So
+\begin{equation*}
+  \TTabstraction[(f \TTelement X \to Y) (g \TTelement Y \to Z)]
+  g \circ f
+\end{equation*}
+means
+\begin{equation*}
+  \TTabstraction[(f \TTelement X \to Y) (g \TTelement Y \to Z)]
+  (g \circ f),
+\end{equation*}
+not
+\begin{equation*}
+  (\TTabstraction[(f \TTelement X \to Y) (g \TTelement Y \to Z)]
+  g) \circ f.
+\end{equation*}
+
+The definition of composition implies that for any three functions
+\begin{equation*}
+  f \TTelement X \to Y, \quad
+  g \TTelement X \to Z, \quad
+  h \TTelement Z \to W,
+\end{equation*}
+we have
+\begin{equation*}
+  ((h \circ g) \circ f) (x) \TTsame
+  (h \circ (g \circ f)) (x) \TTsame
+  h(g(f(x)))
+\end{equation*}
+for all $x \TTelement X$.  So by $\eta$-conversion we get the
+\DBfirstTerm{associativity law}
+\begin{equation*}
+  (h \circ g) \circ f \TTsame h \circ (g \circ f).
+\end{equation*}
+
+The same kind of verification gives the \DBfirstTerm{identity law}
+\begin{equation*}
+  f \circ \TTidFunction[X] \TTsame
+  \TTidFunction[Y] \circ f \TTsame
+  f
+\end{equation*}
+for every function $f \TTelement X \to Y$.
+
+\section{Families as functions}
+\label{sec:famil-as-funct}
+
+We have defined a family of types
+\begin{equation*}
+  (Y_x)_{x \TTelement X}
+\end{equation*}
+to be an assignment that attaches to every element $x \TTelement X$ a
+type $Y_x$, that is to say an element $Y_x$ of the fixed universe
+$\TTuniverse$.  According to the definition of a function in
+\Cref{sec:function-types} above, this is just a function from $X$ to
+$\TTuniverse$.  The value $Y_x$ of this function at any
+$x \TTelement X$ is the same as the value of the abstraction
+\begin{equation*}
+  \TTabstraction[(x \TTelement X)] Y_x
+\end{equation*}
+at $x$.  So by $\eta$-conversion we have
+\begin{equation*}
+  (Y_x)_{x \TTelement X} \TTsame \TTabstraction[(x \TTelement X)] Y_x.
+\end{equation*}
+
+From now we will view a family of types on a type $X$ as a function
+\begin{equation*}
+  F \TTelement X \to \TTuniverse.
+\end{equation*}
+This family would be written as
+\begin{equation*}
+  (F(x))_{x \TTelement X}
+\end{equation*}
+in the earlier notation.
+
+One point that has been fudged above is that $\TTuniverse$ is not a
+type according to the definition that a type means an element of
+$\TTuniverse$.  The statement
+\begin{equation*}
+  \TTuniverse \TTelement \TTuniverse
+\end{equation*}
+leads to a contradiction called Girard's paradox.  So we have not yet
+defined the notion of a function from $X$ to $\TTuniverse$.
+
+To fill this gap suppose that $\TTuniverse \TTsame \TTuniverse[i]$,
+and denote $\TTuniverse[i+1]$ by $\TTuniverse[+]$.  The hierarchy
+property of universes implies that
+$\TTuniverse \TTelement \TTuniverse[+]$.  Everything we have said
+until now will be true if we take $\TTuniverse[+]$ to be our fixed
+universe instead of $\TTuniverse$.  But then $\TTuniverse$ would be a
+type because it is an element of the fixed universe $\TTuniverse[+]$.
+The cumulativity of universes guarantees that the element $X$ of
+$\TTuniverse$ is an element of $\TTuniverse[+]$, so it is also a type
+with respect to $\TTuniverse[+]$.  The notion of a function from $X$
+to $\TTuniverse$ is now given by the definition, in
+\Cref{sec:function-types}, of a function from one type to another.
+
+\section{Sigma types}
+\label{sec:sigma-types}
+
+A \DBfirstTerm{pair} for a family
+\begin{equation*}
+  F \TTelement X \to \TTuniverse
+\end{equation*}
+is an object $t$ that consists of two other objects: an element
+$x \TTelement X$ called the \DBfirstTerm{first component} of $t$, and
+an element $y \TTelement F(x)$ called the \DBfirstTerm{second
+  component} of $t$.  Such a pair $t$ is denoted by
+\begin{equation*}
+  \TTpair{x}{y}.
+\end{equation*}
+
+We are given a type
+\begin{equation*}
+  \TTsigmaType[(x \TTelement X)] F(x),
+\end{equation*}
+whose elements are exactly the pairs for the family $F$.  It is called
+the \DBfirstTerm{Sigma type} of the family.  By the convention that a
+type means an element of the fixed universe, the Sigma type is an
+element of $\TTuniverse$.  We may simply write
+\begin{equation*}
+  \TTsigmaType[x] F(x)
+\end{equation*}
+for the Sigma type if the base type $X$ is obvious.
+
+We have a function
+\begin{equation*}
+  \TTfirstProjection \TTelement
+  \TTsigmaType[(x \TTelement X)] F(x) \to X
+\end{equation*}
+defined by
+\begin{equation*}
+  \TTfirstProjection \TTpair{x}{y} \TTsame y
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement F(x)$.  This function is
+called the \DBfirstTerm{first projection}.
+
+We also have a selection
+\begin{equation*}
+  \TTsecondProjection \TTelement
+  \TTpiType[(t \TTelement \TTsigmaType[(x \TTelement X)] F(x))]{%
+    F(\TTfirstProjection(t))}
+\end{equation*}
+called the \DBfirstTerm{second projection}.  It is defined by
+\begin{equation*}
+  \TTsecondProjection \TTpair{x}{y} \TTsame y
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement F(x)$.
+
+In the other direction, for every $a \TTelement X$ there is a function
+\begin{equation*}
+  \sigma_a \TTelement
+  F(a) \to \TTsigmaType[(x \TTelement X)] F(x)
+\end{equation*}
+defined by
+\begin{equation*}
+  \sigma_a(y) \TTsame \TTpair{a}{y}
+\end{equation*}
+for $y \TTelement F(a)$.  It is called the \DBfirstTerm{canonical
+  function} from $F(a)$ to the Sigma type.
+
+The definitions of the two projections imply that
+\begin{equation*}
+  (x,y) \TTsame
+  ( \TTfirstProjection \TTpair{x}{y},
+  \TTsecondProjection \TTpair{x}{y} )
+\end{equation*}
+for every pair $\TTpair{x}{y}$ for the family $F$.  In other words,
+\begin{equation*}
+  t \TTsame \TTpair{\TTfirstProjection(t)}{\TTsecondProjection(t)}
+\end{equation*}
+for every element $t$ of $\TTsigmaType[(x \TTelement X)] F(x)$.  This
+relation is called \DBfirstTerm{$\eta$-conversion} for Sigma types.
+
+As in the case of Pi types, we use a shortened notation for iterated
+Sigma types.  If
+\begin{equation*}
+  F \TTelement X \to \TTuniverse
+\end{equation*}
+is a family of types, and if for every $x \TTelement X$, we are given
+a family
+\begin{equation*}
+  G_x \TTelement F(x) \to \TTuniverse,
+\end{equation*}
+we will denote
+\begin{equation*}
+  \TTsigmaType[(x \TTelement X)]
+  (\TTsigmaType[(y \TTelement F(x))] G_x(y))
+\end{equation*}
+by
+\begin{equation*}
+  \TTsigmaType[(x \TTelement X) (y \TTelement F(x))] G_x(y).
+\end{equation*}
+We use a similar notation for iterated Sigma types with more than two
+indices.
+
+\section{The product of two types}
+\label{sec:product-two-types}
+
+Just as function types are the Pi types of constant families, product
+types are the Sigma types of constant families.
+
+Suppose $X$ and $Y$ are two types.  We can then take the family in the
+description of Sigma types in \Cref{sec:sigma-types} to be the
+constant family on $X$ with value $Y$.  We denote the Sigma type of
+this family by $\TTproduct{X}{Y}$:
+\begin{equation*}
+  \TTproduct{X}{Y} \TTsame \TTsigmaType[(x \TTelement X)] Y.
+\end{equation*}
+It is called the \DBfirstTerm{product} of $X$ and $Y$.  The elements
+of $\TTproduct{X}{Y}$ are exactly the pairs for the family.  These are
+objects of the form
+\begin{equation*}
+  \TTpair{x}{y},
+\end{equation*}
+where $x \TTelement X$ and $y \TTelement Y$.
+
+We have the projections
+\begin{equation*}
+  \TTfirstProjection \TTelement \TTproduct{X}{Y} \to X, \quad
+  \TTsecondProjection \TTelement \TTproduct{X}{Y} \to Y.
+\end{equation*}
+They are defined by
+\begin{equation*}
+  \TTfirstProjection \TTpair{x}{y} \TTsame x, \quad
+  \TTsecondProjection \TTpair{x}{y} \TTsame y
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement Y$.
+
+For any $a \TTelement X$ and $b \TTelement Y$, there are functions
+\begin{equation*}
+  \sigma_a \TTelement Y \to \TTproduct{X}{Y}, \quad
+  \tau_b \TTelement X \to \TTproduct{X}{Y}
+\end{equation*}
+defined by
+\begin{equation*}
+  \sigma_a(y) \TTsame \TTpair{a}{y}, \quad
+  \tau_b(x) \TTsame \TTpair{x}{b}
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement Y$.  As we vary $a$ and
+$b$, these functions give rise to functions
+\begin{equation*}
+  \sigma \TTelement X \to Y \to \TTproduct{X}{Y},
+  \quad
+  \tau \TTelement Y \to X \to \TTproduct{X}{Y}.
+\end{equation*}
+These two latter functions are called the \DBfirstTerm{pairing}
+functions.
+
+The $\eta$-conversion for Sigma types implies that
+\begin{equation*}
+  t \TTsame \TTpair{\TTfirstProjection(t)}{\TTsecondProjection(t)}
+\end{equation*}
+for all $t \TTelement \TTproduct{X}{Y}$.  This fact is called
+\DBfirstTerm{$\eta$-conversion} for product types.
+
+\section{The empty type}
+\label{sec:empty-type}
+
+We are given a type $\TTemptyType$ called the \DBfirstTerm{empty
+  type}.  We are also given for every family
+\begin{equation*}
+  F \TTelement \TTemptyType \to \TTuniverse
+\end{equation*}
+on $\TTemptyType$, a selection $\phi_F$ for $F$, called the
+\DBfirstTerm{canonical selection} for $F$.
+
+Now if $X$ is any type, we can take $F$ to be the constant family with
+domain $\TTemptyType$ and value $X$.  We then get a function
+\begin{equation*}
+  \phi_X \TTelement \TTemptyType \to X,
+\end{equation*}
+which is called the \DBfirstTerm{canonical function} from
+$\TTemptyType$ to $X$.
+
+\section{The unit type}
+\label{sec:unit-type}
+
+We are given a type $\TTunitType$ called the \DBfirstTerm{unit type},
+and an element
+\begin{equation*}
+  \TTunitTypeElement \TTelement \TTunitType
+\end{equation*}
+called the \DBfirstTerm{canonical element} of $\TTunitType$.
+
+For every family
+\begin{equation*}
+  F \TTelement \TTunitType \to \TTuniverse
+\end{equation*}
+on $\TTunitType$, and for every element
+\begin{equation*}
+  a \TTelement F(\TTunitTypeElement),
+\end{equation*}
+we are given a selection $\phi_{F,a}$ for $F$ with the property that
+\begin{equation*}
+  \phi_{F,a}(\TTunitTypeElement) \TTsame a.
+\end{equation*}
+We call $\phi_{F,a}$ the selection for $F$ \DBfirstTerm{induced} by
+the element $a$.
+
+Taking $F$ to be a constant family, for every type
+\begin{equation*}
+  X \TTelement \TTuniverse,
+\end{equation*}
+and every element
+\begin{equation*}
+  a \TTelement X,
+\end{equation*}
+we get a function
+\begin{equation*}
+  \phi_a \TTelement \TTunitType \to X
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_a(\TTunitTypeElement) \TTsame a.
+\end{equation*}
+It is called the function from $\TTunitType$ to $X$
+\DBfirstTerm{induced} by $a$.
+
+We also have a function
+\begin{equation*}
+  \psi_X \TTelement X \to \TTunitType
+\end{equation*}
+defined by
+\begin{equation*}
+  \psi_X(x) \TTsame \TTunitTypeElement
+\end{equation*}
+for all $x \TTelement X$.  It is called the \DBfirstTerm{canonical
+  function} from $X$ to $\TTunitType$.
+
+\section{The boolean type}
+\label{sec:boolean-type}
+
+We are given a type $\TTbooleanType$ called the \DBfirstTerm{boolean
+  type}, and two elements
+\begin{equation*}
+  \TTbooleanTrueElement \TTelement \TTbooleanType, \quad
+  \TTbooleanFalseElement \TTelement \TTbooleanType,
+\end{equation*}
+which are not the same.  These two elements are called the
+\DBfirstTerm{canonical elements} of $\TTbooleanType$.
+
+For every family
+\begin{equation*}
+  F \TTelement \TTbooleanType \to \TTuniverse,
+\end{equation*}
+and elements
+\begin{equation*}
+  a \TTelement F(\TTbooleanTrueElement), \quad
+  b \TTelement F(\TTbooleanFalseElement),
+\end{equation*}
+we are given a selection $\phi_{F,a,b}$ for $F$ with the property that
+\begin{equation*}
+  \phi_{F,a,b}(\TTbooleanTrueElement) \TTsame a, \quad
+  \phi_{F,a,b}(\TTbooleanFalseElement) \TTsame b.
+\end{equation*}
+It is called the selection for $F$ \DBfirstTerm{induced} by $a$ and
+$b$.
+
+If we assume that $F$ is a constant type, for every type
+\begin{equation*}
+  X \TTelement \TTuniverse,
+\end{equation*}
+and elements
+\begin{equation*}
+  a \TTelement X, \quad
+  b \TTelement X,
+\end{equation*}
+we get a function
+\begin{equation*}
+  \phi_{a,b} \TTelement \TTbooleanType \to X
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{a,b}(\TTbooleanTrueElement) \TTsame a, \quad
+  \phi_{a,b}(\TTbooleanFalseElement) \TTsame b.
+\end{equation*}
+We again call $\phi_{a,b}$ the function from $\TTbooleanType$ to $X$
+\DBfirstTerm{induced} by $a$ and $b$.
+
+\section{The coproduct of two types}
+\label{sec:coproduct-two-types}
+
+Suppose $X$ and $Y$ are types.  We are then given a type
+\begin{equation*}
+  \TTcoproduct{X}{Y}.
+\end{equation*}
+We are also given two functions
+\begin{equation*}
+  \TTfirstInjection
+  \TTelement
+  X \to \TTcoproduct{X}{Y}, \quad
+  \TTsecondInjection
+  \TTelement
+  Y \to \TTcoproduct{X}{Y}.
+\end{equation*}
+They are called the \DBfirstTerm{canonical functions} from $X$ and $Y$
+to $\TTcoproduct{X}{Y}$.  Objects of the form $\TTfirstInjection(x)$
+or $\TTsecondInjection(y)$, where $x \TTelement X$ and
+$y \TTelement Y$, are called the \DBfirstTerm{canonical elements} of
+$\TTcoproduct{X}{Y}$.
+
+For every family
+\begin{equation*}
+  F \TTelement \TTcoproduct{X}{Y} \to \TTuniverse,
+\end{equation*}
+every selection $f$ for the family
+\begin{equation*}
+  F \circ \TTfirstInjection \TTelement X \to \TTuniverse,
+\end{equation*}
+and every selection $g$ for the family
+\begin{equation*}
+  F \circ \TTsecondInjection \TTelement Y \to \TTuniverse,
+\end{equation*}
+we are given a selection $\phi_{F,f,g}$ for $F$ with the property that
+\begin{equation*}
+  \phi_{F,f,g} (\TTfirstInjection(x)) \TTsame f(x), \quad
+  \phi_{F,f,g} (\TTsecondInjection(y)) \TTsame g(y)
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement Y$.  We call $\phi_{F,f,g}$
+the selection for $F$ \DBfirstTerm{induced} by $f$ and $g$.
+
+Now take $F$ to be the constant family on $\TTcoproduct{X}{Y}$ with
+value $Z$, where $Z$ is any type.  Consider any two functions
+\begin{equation*}
+  f \TTelement X \to Z, \quad
+  g \TTelement Y \to Z.
+\end{equation*}
+The above provision then gives us a function
+\begin{equation*}
+  \phi_{f,g} \TTelement \TTcoproduct{X}{Y} \to Z
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{f,g} (\TTfirstInjection(x)) \TTsame f(x), \quad
+  \phi_{f,g} (\TTsecondInjection(y)) \TTsame g(y)
+\end{equation*}
+for all $x \TTelement X$ and $y \TTelement Y$.  It is called the
+function from $\TTcoproduct{X}{Y}$ to $Z$ \DBfirstTerm{induced} by $f$
+and $g$.
+
+\section{Natural numbers}
+\label{sec:natural-numbers}
+
+We are given a type $\TTnatural$, an element
+\begin{equation*}
+  \TTzeroNatural \TTelement \TTnatural,
+\end{equation*}
+and a function
+\begin{equation*}
+  \TTsuccessor \TTelement \TTnatural \to \TTnatural.
+\end{equation*}
+The elements of $\TTnatural$ are called the \DBfirstTerm{natural
+  numbers}.  The natural number $\TTzeroNatural$ is called
+\DBfirstTerm{zero}.  For any $n \TTelement \TTnatural$, the natural
+number $\TTsuccessor(n)$ is called the \DBfirstTerm{successor} of $n$.
+
+For every family
+\begin{equation*}
+  F \TTelement \TTnatural \to \TTuniverse,
+\end{equation*}
+every element
+\begin{equation*}
+  a \TTelement F(\TTzeroNatural),
+\end{equation*}
+and every element
+\begin{equation*}
+  f \TTelement
+  \TTpiType[(n \TTelement \TTnatural)] F(n) \to F(\TTsuccessor(n)),
+\end{equation*}
+we are given a selection $\phi_{F,a,f}$ for $F$ such that
+\begin{equation*}
+  \phi_{F,a,f} (\TTzeroNatural) \TTsame a,
+\end{equation*}
+and
+\begin{equation*}
+  \phi_{F,a,f} (\TTsuccessor(n)) \TTsame f(n)(\phi_{F,a,f}(n))
+\end{equation*}
+for all $n \TTelement \TTnatural$.  We call $\phi_{F,a,f}$ the
+selection for $F$ \DBfirstTerm{induced} by $a$ and $f$.
+
+When we specialise this dispensation to a constant family, for every
+type
+\begin{equation*}
+  X \TTelement \TTuniverse,
+\end{equation*}
+every element
+\begin{equation*}
+  a \TTelement X,
+\end{equation*}
+and every function
+\begin{equation*}
+  f \TTelement \TTnatural \to X \to X,
+\end{equation*}
+we get a function
+\begin{equation*}
+  \phi_{a,f} \TTelement \TTnatural \to X
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{a,f} (\TTzeroNatural) \TTsame a,
+\end{equation*}
+and
+\begin{equation*}
+  \phi_{a,f} (\TTsuccessor(n)) \TTsame f(n)(\phi_{a,f}(n))
+\end{equation*}
+for all $n \TTelement \TTnatural$.  It is called the function from
+$\TTnatural$ to $X$ \DBfirstTerm{induced} by $a$ and $f$.
+
+\section{Paths}
+\label{sec:paths}
+
+Let us fix a type $X$, and an element $x \TTelement X$.  We are then
+given a family of types
+\begin{equation*}
+  \TTpathFamily{x} \TTelement X \to \TTuniverse
+\end{equation*}
+on $X$, called the \DBfirstTerm{path family} of $x$.  For any element
+$y \TTelement X$, we will denote the type
+\begin{equation*}
+  \TTpathFamily{x} (y) \TTelement \TTuniverse
+\end{equation*}
+by
+\begin{equation*}
+  \TTpathType{x}{y}.
+\end{equation*}
+Each of its elements is called a \DBfirstTerm{path} from $x$ to $y$.
+
+An element of the type
+\begin{equation*}
+  \TTpathType{x}{x}
+\end{equation*}
+is called a \DBfirstTerm{loop} at $x$.  We are given a loop
+\begin{equation*}
+  \TTidLoop{x} \TTelement \TTpathType{x}{x}.
+\end{equation*}
+It is called the \DBfirstTerm{identity loop} at $x$.
+
+For every element
+\begin{equation*}
+  F
+  \TTelement
+  \TTpiType[(y \TTelement X)]
+  \TTpathType{x}{y} \to \TTuniverse,
+\end{equation*}
+and for every element
+\begin{equation*}
+  a \TTelement F(x)(\TTidLoop{x}),
+\end{equation*}
+we are given an element
+\begin{equation*}
+  \phi_{F,a}
+  \TTelement
+  \TTpiType[(y \TTelement X) (p \TTelement \TTpathType{x}{y})]
+  F(y)(p)
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{F,a}(x)(\TTidLoop{x}) \TTsame a.
+\end{equation*}
+We say that $\phi_{F,a}(y)(p)$ is obtained by
+\DBfirstTerm{transporting} $a$ along the path $p$ from $x$ to $y$.
+
+We are using here the convention that the path operator has higher
+precedence than the arrow.  So
+\begin{equation*}
+  \TTpathType{x}{y} \to \TTuniverse
+\end{equation*}
+means
+\begin{equation*}
+  (\TTpathType{x}{y}) \to \TTuniverse,
+\end{equation*}
+not
+\begin{equation*}
+  \TTpathType{x}{(y \to \TTuniverse)}.
+\end{equation*}
+
+We are also ignoring the problem that the object
+\begin{equation*}
+  \TTpiType[(y \TTelement X)]
+  \TTpathType{x}{y} \to \TTuniverse
+\end{equation*}
+is not defined as $\TTuniverse$ is not an element of $\TTuniverse$.
+However, if $\TTuniverse \TTsame \TTuniverse[i]$, and if we redo the
+earlier development with $\TTuniverse[+]$ in the place of
+$\TTuniverse$, where $\TTuniverse[+] \TTsame \TTuniverse[i+1]$, then
+\begin{equation*}
+  \TTpiType[(y \TTelement X)]
+  \TTpathType{x}{y} \to \TTuniverse
+\end{equation*}
+becomes a well-defined type for every $y \TTelement X$.  This argument
+is like the one in \Cref{sec:famil-as-funct} that justified the
+practice of looking at families as functions.  We will skip such
+justification from now.
+
+We can specialise the above discussion to the situation when
+\begin{equation*}
+  F(y)(p) \TTsame G(y)
+\end{equation*}
+is independent of $p$.  So for every family of types
+\begin{equation*}
+  G \TTelement X \to \TTuniverse,
+\end{equation*}
+and every element
+\begin{equation*}
+  a \TTelement G(x),
+\end{equation*}
+we get an element
+\begin{equation*}
+  \phi_{G,a} \TTelement \TTpiType[(y \TTelement X)]
+  \TTpathType{x}{y} \to G(y)
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{G,a}(x)(\TTidLoop{x}) \TTsame a.
+\end{equation*}
+Again $\phi_{G,a}(y)(p)$ is called the element obtained by
+\DBfirstTerm{transporting} $a$ along $p$.
+
+Let us lastly look at the even more special case when $G$ is a
+constant family.  For every type
+\begin{equation*}
+  H \TTelement \TTuniverse,
+\end{equation*}
+and for every element
+\begin{equation*}
+  a \TTelement H,
+\end{equation*}
+we get an element
+\begin{equation*}
+  \phi_{H,a} \TTelement
+  \TTpiType[(y \TTelement X)]
+  \TTpathType{x}{y} \to H
+\end{equation*}
+such that
+\begin{equation*}
+  \phi_{H,e}(x)(\TTidLoop{x}) \TTsame a.
+\end{equation*}
+If $p$ is a path from $x$ to $y$, we say then too that
+$\phi_{H,a}(y)(p)$ is obtained by \DBfirstTerm{transporting} $a$ along
+$p$.
+
+\end{document}
+
+%%% End of file

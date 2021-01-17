@@ -1,0 +1,139 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content="plasTeX">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type theory: Pi types</title><link rel="next" href="sec-function-types.html" title="Function types"><link rel="prev"  href="sec-universes.html" title="Universes"><link rel="parent" href="index.html" title="Type theory"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&amp;family=Roboto+Mono&amp;display=swap">
+<link rel="stylesheet" href="styles/theme-default.css"><script src="js/mathjax-configuration.js" defer></script><script src="js/mathjax/tex-chtml.js" defer></script>
+</head>
+
+<body>
+<nav class="toc">
+<svg  class="icon icon-cross close-toc"><use href="symbol-defs.svg#icon-cross"></use></svg>
+<ul class="sub-toc-0">
+<li class="inactive non-current">
+<a href="sec-introduction.html"><span class="toc_ref">1</span>
+<span class="toc_entry">Introduction</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-universes.html"><span class="toc_ref">2</span>
+<span class="toc_entry">Universes</span>
+</a>
+</li>
+<li class="active current">
+<a href="sec-pi-types.html"><span class="toc_ref">3</span>
+<span class="toc_entry">Pi types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-function-types.html"><span class="toc_ref">4</span>
+<span class="toc_entry">Function types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-some-basic-functions.html"><span class="toc_ref">5</span>
+<span class="toc_entry">Some basic functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-comp-funct.html"><span class="toc_ref">6</span>
+<span class="toc_entry">Composition of functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-famil-as-funct.html"><span class="toc_ref">7</span>
+<span class="toc_entry">Families as functions</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-sigma-types.html"><span class="toc_ref">8</span>
+<span class="toc_entry">Sigma types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-product-two-types.html"><span class="toc_ref">9</span>
+<span class="toc_entry">The product of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-empty-type.html"><span class="toc_ref">10</span>
+<span class="toc_entry">The empty type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-unit-type.html"><span class="toc_ref">11</span>
+<span class="toc_entry">The unit type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-boolean-type.html"><span class="toc_ref">12</span>
+<span class="toc_entry">The boolean type</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-coproduct-two-types.html"><span class="toc_ref">13</span>
+<span class="toc_entry">The coproduct of two types</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-natural-numbers.html"><span class="toc_ref">14</span>
+<span class="toc_entry">Natural numbers</span>
+</a>
+</li>
+<li class="inactive non-current">
+<a href="sec-paths.html"><span class="toc_ref">15</span>
+<span class="toc_entry">Paths</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="wrapper with-toc">
+<header>
+<h1 id="doc_title">Type theory</h1>
+</header>
+<ul class="breadcrumbs">
+<li class="crumb">
+<a href="index.html" class="crumb">Type theory</a>
+</li>
+<li class="last_crumb">Pi types</li>
+</ul>
+<div class="content">
+<h1 id="sec:pi-types"><span class="section-number">3</span> <span class="section-title">Pi types</span></h1>
+
+<p>Let us now look at a family of types <span class="equationstar">\begin{equation*}(Y_{x})_{x \mathrel{:}X}.\end{equation*}</span> According to the above definition, this means that <span class="equationstar">\begin{equation*}X \mathrel{:}\mathscr{U},\end{equation*}</span> and we are given a type <span class="equationstar">\begin{equation*}Y_{x} \mathrel{:}\mathscr{U}\end{equation*}</span> for each element <span class="math">\(x \mathrel{:}X\)</span>.</p>
+<p>A <em class="docbook_firstTerm">selection</em> for this family is an assignment <span class="math">\(f\)</span> that attaches an element <span class="equationstar">\begin{equation*}f(x) \mathrel{:}Y_{x}\end{equation*}</span> to every element <span class="math">\(x \mathrel{:}X\)</span>. The object <span class="math">\(f(x)\)</span> is called the <em class="docbook_firstTerm">value</em> of <span class="math">\(f\)</span> at <span class="math">\(x\)</span>.</p>
+<p>For every family <span class="equationstar">\begin{equation*}(Y_{x})_{x \mathrel{:}X},\end{equation*}</span> we are given a type <span class="equationstar">\begin{equation*}\Pi{}(x \mathrel{:}X).\, Y_{x},\end{equation*}</span> whose elements are exactly the selections for the family. This type is called the <em class="docbook_firstTerm">Pi type</em> of the family.</p>
+<p>The definition of a type implies that the Pi type is an element of <span class="math">\(\mathscr{U}\)</span>: <span class="equationstar">\begin{equation*}\Pi{}(x \mathrel{:}X).\, Y_{x} \mathrel{:}\mathscr{U}.\end{equation*}</span> We may just write <span class="equationstar">\begin{equation*}\Pi{}x.\, Y_{x}\end{equation*}</span> for the Pi type if the base type <span class="math">\(X\)</span> is obvious.</p>
+<p>Suppose we are given an element <span class="equationstar">\begin{equation*}y_{x} \mathrel{:}Y_{x}\end{equation*}</span> for every element <span class="math">\(x \mathrel{:}X\)</span>. We then have a selection for the family, whose value at <span class="math">\(x \mathrel{:}X\)</span> is <span class="math">\(y_{x}\)</span>. We denote this selection by <span class="equationstar">\begin{equation*}\lambda{}(x \mathrel{:}X).\, y_{x}.\end{equation*}</span> A selection defined like this is called a <em class="docbook_firstTerm"><span class="math">\(\lambda\)</span>-abstraction</em>, or just an <em class="docbook_firstTerm">abstraction</em>.</p>
+<p>This definition means that <span class="equationstar">\begin{equation*}(\lambda{}(x \mathrel{:}X).\, y_{x}) (a) \equivy_{a}\end{equation*}</span> for all <span class="math">\(a \mathrel{:}X\)</span>. We may just write <span class="equationstar">\begin{equation*}\lambda{}(x).\, y_{x}\end{equation*}</span> for the abstraction if the base type is obvious.</p>
+<p>If we start with a selection <span class="math">\(f\)</span> for the family, we can take <span class="math">\(y_{x}\)</span> to be <span class="math">\(f(x)\)</span> in the above description, and get another selection <span class="equationstar">\begin{equation*}\lambda{}(x \mathrel{:}X).\, f(x).\end{equation*}</span> Both <span class="math">\(f\)</span> and this selection are assignments that attach the same value <span class="equationstar">\begin{equation*}f(x) \mathrel{:}Y_{x}\end{equation*}</span> to every element <span class="math">\(x \mathrel{:}X\)</span>. So the two selections are the same: <span class="equationstar">\begin{equation*}f \equiv\lambda{}(x \mathrel{:}X).\, f(x).\end{equation*}</span> This relation is called <em class="docbook_firstTerm"><span class="math">\(\eta\)</span>-conversion</em> for selections. The abstraction on its right hand side is called the <em class="docbook_firstTerm"><span class="math">\(\eta\)</span>-expansion</em> of <span class="math">\(f\)</span>.</p>
+<p>We will use the following compact notation for iterated Pi types. If <span class="equationstar">\begin{equation*}(Y_{x})_{x \mathrel{:}X}\end{equation*}</span> is a family of types, and if for every <span class="math">\(x \mathrel{:}X\)</span>, we are given a family <span class="equationstar">\begin{equation*}(Z_{xy})_{y \mathrel{:}Y_{x}},\end{equation*}</span> we will denote <span class="equationstar">\begin{equation*}\Pi{}(x \mathrel{:}X).\, (\Pi{}(y \mathrel{:}Y_{x}).\, Z_{xy})\end{equation*}</span> by <span class="equationstar">\begin{equation*}\Pi{}(x \mathrel{:}X) (y \mathrel{:}Y_{x}).\, Z_{xy}.\end{equation*}</span></p>
+<p>If we are given an element <span class="equationstar">\begin{equation*}z_{xy} \mathrel{:}Z_{xy}\end{equation*}</span> for every <span class="math">\(x \mathrel{:}X\)</span> and <span class="math">\(y \mathrel{:}Y_{x}\)</span>, we will denote the selection <span class="equationstar">\begin{equation*}\lambda{}(x \mathrel{:}X).\, (\lambda{}(y \mathrel{:}Y_{x}).\, z_{xy})\end{equation*}</span> by <span class="equationstar">\begin{equation*}\lambda{}(x \mathrel{:}X) (y \mathrel{:}Y_{x}).\, z_{xy}.\end{equation*}</span></p>
+<p>We will drop the types <span class="math">\(X\)</span> and <span class="math">\(Y_{x}\)</span> from the notation if they are obvious, and simply write <span class="equationstar">\begin{equation*}\Pi{}x y.\, Z_{xy}\end{equation*}</span> and <span class="equationstar">\begin{equation*}\lambda{}x y.\, z_{xy}.\end{equation*}</span></p>
+<p>We will use the same kind of notation even when there are more than two indices.</p>
+<p>We will also use the convention that the scope of the Pi operator in any expression is the entire right of the expression unless stopped by parentheses. So an expression like <span class="equationstar">\begin{equation*}\Pi{}(y \mathrel{:}X).\, x = y\end{equation*}</span> means <span class="equationstar">\begin{equation*}\Pi{}(y \mathrel{:}X).\, (x = y),\end{equation*}</span> not <span class="equationstar">\begin{equation*}(\Pi{}(y \mathrel{:}X).\, x) = y.\end{equation*}</span></p>
+
+</div>
+<nav class="prev_up_next">
+<a href="sec-universes.html" title="Universes"><svg  class="icon icon-arrow-left "><use href="symbol-defs.svg#icon-arrow-left"></use></svg></a>
+<a href="index.html" title="Type theory"><svg  class="icon icon-arrow-up "><use href="symbol-defs.svg#icon-arrow-up"></use></svg></a>
+<a href="sec-function-types.html" title="Function types"><svg  class="icon icon-arrow-right "><use href="symbol-defs.svg#icon-arrow-right"></use></svg></a>
+<svg id="toc-toggle"  class="icon icon-list-numbered "><use href="symbol-defs.svg#icon-list-numbered"></use></svg>
+</nav>
+<script src="js/jquery.min.js"></script>
+<script src="js/plastex.js"></script>
+<script src="js/svgxuse.js"></script>
+</div>
+</body>
+</html>

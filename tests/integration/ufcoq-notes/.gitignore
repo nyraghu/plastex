@@ -1,0 +1,13 @@
+###  Files that should be ignored by Git
+
+*.paux
+auto/
+build/
+.nix_build_DONE
+result
+
+### End of file
+
+# Local Variables:
+# mode: conf-unix
+# End:
