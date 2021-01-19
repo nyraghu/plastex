@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ce541cd6-ff46-4951-9d55-26cc24ce419f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/packages/simplebibliography.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/simplebibliography.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="99fbeb89-7525-42c1-aac1-28c237295c6d" />
+  <component name="ProjectId" id="1gb0UqkJ5u2G6j52r8vT8GGJtiG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce541cd6-ff46-4951-9d55-26cc24ce419f" name="Default Changelist" comment="" />
+      <created>1598368005213</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598368005213</updated>
+      <workItem from="1598368006598" duration="368000" />
+      <workItem from="1598368417391" duration="90019000" />
+      <workItem from="1598968609028" duration="72511000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="793" y="456" width="329" height="287" key="#Other_File_Types" timestamp="1598619248654">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="793" y="456" width="329" height="287" key="#Other_File_Types/0.0.1920.1199@0.0.1920.1199" timestamp="1598619248654" />
+    <state x="797" y="512" width="321" height="175" key="#VCS_History_Cache_Settings" timestamp="1599319599832">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="797" y="512" width="321" height="175" key="#VCS_History_Cache_Settings/0.0.1920.1199@0.0.1920.1199" timestamp="1599319599832" />
+    <state x="664" y="404" width="588" height="392" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598380879483">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="664" y="404" width="588" height="392" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1199@0.0.1920.1199" timestamp="1598380879483" />
+    <state x="559" y="168" width="797" height="863" key="CommitChangelistDialog2" timestamp="1599291223767">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="559" y="168" width="797" height="863" key="CommitChangelistDialog2/0.0.1920.1199@0.0.1920.1199" timestamp="1599291223767" />
+    <state x="464" y="235" key="SettingsEditor" timestamp="1599319096722">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="464" y="235" key="SettingsEditor/0.0.1920.1199@0.0.1920.1199" timestamp="1599319096722" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1599291617739">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1199@0.0.1920.1199" timestamp="1599291617739" />
+    <state x="97" y="100" width="1726" height="1001" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599291638802">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="97" y="100" width="1726" height="1001" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1199@0.0.1920.1199" timestamp="1599291638802" />
+    <state x="606" y="320" width="700" height="530" key="recent.locations.popup" timestamp="1599291603303">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="606" y="320" width="700" height="530" key="recent.locations.popup/0.0.1920.1199@0.0.1920.1199" timestamp="1599291603303" />
+    <state x="623" y="269" width="672" height="678" key="search.everywhere.popup" timestamp="1599319592845">
+      <screen x="0" y="0" width="1920" height="1199" />
+    </state>
+    <state x="623" y="269" width="672" height="678" key="search.everywhere.popup/0.0.1920.1199@0.0.1920.1199" timestamp="1599319592845" />
+  </component>
+  <component name="hg4idea.settings">
+    <option name="CHECK_INCOMING_OUTGOING" value="true" />
+    <option name="RECENT_HG_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+</project>
