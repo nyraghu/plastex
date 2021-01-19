@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[prefix=BN]{basicnotes}
+
+\BNsetTitle{Test documents}
+
+\BNtitle{A test document for the simplebibliography package}
+
+\BNauthor{N. Raghavendra}
+
+\BNdate{2020-08-21}
+
+\usepackage[prefix=SB]{simplebibliography}
+
+\SBaddbibresource{main.bib}
+
+\begin{document}
+
+\BNmakeTitle
+
+\begin{abstract}
+  This document is a test for the simplebibliography package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Hello world}
+\label{sec:hello-world}
+
+
+The phrase \SBcite{borovik:2010:mathem_under_the_micros} is an example
+of a bibliographic citation.  It cites a book with one author.
+
+The article \SBcite{bourbaki:univer} is a part of a book.  The book
+must appear in the list of references even though it is not cited in
+this document.
+
+The text \SBcite{dwyer:2004:homot_limit_funct_on_model} is a book with
+four authors.
+
+\section{Hello universe}
+\label{sec:hello-universe}
+
+The citation \SBcite{altenkirch:2002:α_conver_is_easy} is for an
+online unpublished article.
+
+The article \SBcite{farmer:2008:seven_virtues_of_simpl_type_theor} was
+published in a journal.
+
+The citation \SBcite[Section~3, page~55]{bourbaki:univer} includes a
+note about the target location in the cited reference.
+
+\SBprintbibliography
+
+\end{document}
